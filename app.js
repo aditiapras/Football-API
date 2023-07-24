@@ -12,6 +12,18 @@ app.get("/", (req, res) => {
   res.send("Welcome to Unofficial Fotmob Football API");
 });
 
+//  GET REQUEST LOCATION
+app.get(`/v1/mylocation/`, (req, res) => {
+  const getData = async () => {
+    const data = await fetch(
+      `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.GEO_API_KEY}`
+    ).then((r) => r.json());
+    const result = await data;
+    res.json({ responses: result });
+  };
+  getData();
+});
+
 // GET REQUEST MATCHES
 app.get(
   "/v1/matches",
