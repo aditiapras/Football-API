@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const cors = require("cors");
+const requestIp = require("request-ip");
 
 require("dotenv").config();
 
@@ -19,7 +20,10 @@ app.get(`/v1/mylocation/`, (req, res) => {
       `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.GEO_API_KEY}`
     ).then((r) => r.json());
     const result = await data;
-    res.json({ responses: result });
+    var clientIp = requestIp.getClientIp(req);
+    console.log(clientIp);
+
+    res.json({ responses: result, ip: clientIp });
   };
   getData();
 });
