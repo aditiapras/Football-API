@@ -2,8 +2,6 @@ const express = require("express");
 const app = express();
 const port = 3000;
 const cors = require("cors");
-var moment = require("moment-timezone");
-const apiKeys = process.env.MY_API_KEY;
 
 require("dotenv").config();
 
@@ -18,14 +16,13 @@ app.get("/", (req, res) => {
 app.get(
   "/v1/matches",
   (req, res, next) => {
-    if (req.query.apikey == apiKeys) next("route");
+    if (req.query.apikey == process.env.MY_API_KEY) next("route");
     else next();
   },
   (req, res, next) => {
     // send a regular response
     res.json({ Error, message: "Your are not authorized to access this API." });
     console.log(req.query);
-    console.log(apiKeys);
   }
 );
 
@@ -33,7 +30,8 @@ app.get(`/v1/matches`, (req, res, next) => {
   const date = req.query.date;
   const timezone = req.query.timezone;
   const ccode = req.query.ccode3;
-  console.log(date);
+  console.log("date: ", date);
+  console.log("apikey: ", process.env.MY_API_KEY);
 
   const getData = async () => {
     const data = await fetch(
@@ -58,7 +56,7 @@ app.get(
   "/v1/allLeagues",
   (req, res, next) => {
     // if the user ID is 0, skip to the next route
-    if (req.query.apikey == apiKeys) next("route");
+    if (req.query.apikey == process.env.MY_API_KEY) next("route");
     // otherwise pass the control to the next middleware function in this stack
     else next();
   },
