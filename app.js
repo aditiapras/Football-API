@@ -3,27 +3,47 @@ const app = express();
 const port = 3000;
 const cors = require("cors");
 const requestIp = require("request-ip");
-
+const path = require("path");
 require("dotenv").config();
+
+let publicPath = path.join(__dirname, "public");
+
+let docPath = path.join(__dirname, "public");
 
 app.use(cors());
 
 // API HOMEPAGE
 app.get("/", (req, res) => {
-  res.send("Welcome to Unofficial Fotmob Football API");
+  res.sendFile(`${publicPath}/index.html`);
 });
+//
+app.get("/documentation-v1", (req, res) => {
+  res.sendFile(`${docPath}/documentation.html`);
+});
+//
 
 //  GET REQUEST LOCATION
-app.get(`/v1/mylocation/`, (req, res) => {
+app.get(
+  "/v1/mylocation",
+  (req, res, next) => {
+    if (req.query.apikey == process.env.MY_API_KEY) next("route");
+    else next();
+  },
+  (req, res, next) => {
+    // send a regular response
+    res.json({ Error, message: "Your are not authorized to access this API." });
+  }
+);
+
+app.get(`/v1/mylocation`, (req, res) => {
+  var clientIp = requestIp.getClientIp(req);
   const getData = async () => {
     const data = await fetch(
-      `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.GEO_API_KEY}`
+      `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.GEO_API_KEY}&ip=${clientIp}`
     ).then((r) => r.json());
     const result = await data;
-    var clientIp = requestIp.getClientIp(req);
-    console.log(clientIp);
 
-    res.json({ responses: result, ip: clientIp });
+    res.json({ responses: result });
   };
   getData();
 });
@@ -38,7 +58,6 @@ app.get(
   (req, res, next) => {
     // send a regular response
     res.json({ Error, message: "Your are not authorized to access this API." });
-    console.log(req.query);
   }
 );
 
@@ -46,8 +65,6 @@ app.get(`/v1/matches`, (req, res, next) => {
   const date = req.query.date;
   const timezone = req.query.timezone;
   const ccode = req.query.ccode3;
-  console.log("date: ", date);
-  console.log("apikey: ", process.env.MY_API_KEY);
 
   const getData = async () => {
     const data = await fetch(
