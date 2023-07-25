@@ -11,7 +11,7 @@
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
       @import url("https://fonts.cdnfonts.com/css/sf-ui-display");
       body {
-        font-family: "SF UI Display", sans-serif;
+        font-family: "Inter", sans-serif;
       }
     </style>
     <link
@@ -57,16 +57,16 @@
 
           <h1 class="font-bold text-4xl border-b mt-5">Documentation</h1>
 
-          <p class="font-light">
+          <p class="font-normal">
             Welcome to Football-API documentations V1. This API based on
             <a
               class="font-semibold hover:underline hover:text-blue-500 inline-flex"
               href="https://fotmob.com"
               target="_blank"
             >
-              <span class="inline-flex gap-1 items-baseline">
+              <span class="inline-flex gap-1 items-center">
                 Fotmob's API
-                <i class="bi bi-box-arrow-up-right text-xs"></i>
+                <i class="bi bi-box-arrow-up-right text-xs font-bold"></i>
               </span>
             </a>
             which provide large amount of football data in real-time.
@@ -82,11 +82,11 @@
           </p>
 
           <div class="flex flex-col gap-2">
-            <p class="text-base font-light">
+            <p class="text-base font-normal">
               This is base URL that you will use for using this API. You have to
               change the API Endpoint to the API Endpoint you want to use.
             </p>
-            <p class="w-fit font-semibold text-xl">Base URL:</p>
+            <p class="w-fit font-semibold text-lg">Base URL:</p>
             <code
               class="text-xs bg-blue-50 p-2 rounded-md overflow-x-auto whitespace-nowrap"
             >
@@ -103,7 +103,11 @@
               GET
             </p>
 
-            <div class="flex flex-col gap-2 pb-2 mt-5" id="getallleagues">
+            <div
+              class="flex flex-col gap-2 pb-2 mt-5"
+              id="getallleagues"
+              onclick="addSpace()"
+            >
               <p class="font-bold text-2xl group border-b pb-2">
                 <span class="group-hover:underline group-hover:text-blue-500"
                   >#</span
@@ -122,7 +126,10 @@
                   class="text-xs bg-blue-50 p-2 w-full rounded-md overflow-x-auto"
                 >
                   <code class="whitespace-nowrap">
-                    https://api.aditiapras.dev/v1/allLeagues?apikey={YOUR_API_KEY}
+                    https://api.aditiapras.dev/v1/allLeagues?<span
+                      class="text-green-600"
+                      >apikey={YOUR_API_KEY}</span
+                    >
                   </code>
                 </p>
                 <p class="font-semibold">Example Response:</p>
@@ -162,7 +169,7 @@
               <code
                 class="text-xs bg-blue-50 p-2 rounded-md overflow-x-auto whitespace-nowrap"
               >
-                v1/leagues?<span class="text-green-600"
+                /v1/leagues?<span class="text-green-600"
                   >apikey={YOUR_API_KEY}</span
                 >&<span class="text-red-600">id={LeaguesId}</span></code
               >
@@ -213,7 +220,7 @@
               <code
                 class="text-xs bg-blue-50 p-2 rounded-md overflow-x-auto whitespace-nowrap"
               >
-                v1/matches?<span class="text-green-600"
+                /v1/matches?<span class="text-green-600"
                   >apikey={YOUR_API_KEY}</span
                 >&<span class="text-red-600">date={date}</span></code
               >
@@ -275,7 +282,7 @@
               <code
                 class="text-xs bg-blue-50 p-2 rounded-md overflow-x-auto whitespace-nowrap"
               >
-                v1/matchid?<span class="text-green-600"
+                /v1/matchDetails?<span class="text-green-600"
                   >apikey={YOUR_API_KEY}</span
                 >&<span class="text-red-600">id={MatchId}</span></code
               >
@@ -284,10 +291,10 @@
                 <code
                   class="text-xs bg-blue-50 p-2 rounded-md overflow-x-auto whitespace-nowrap"
                 >
-                  https://api.aditiapras.dev/v1/matchid?<span
+                  https://api.aditiapras.dev/v1/matchDetails?<span
                     class="text-green-600"
                     >apikey={YOUR_API_KEY}</span
-                  >&<span class="text-red-600 font-bold">id=435879</span></code
+                  >&<span class="text-red-600 font-bold">id=4173719</span></code
                 >
                 <p class="font-semibold">Example Response:</p>
                 <pre
@@ -326,9 +333,9 @@
               <code
                 class="text-xs bg-blue-50 p-2 rounded-md overflow-x-auto whitespace-nowrap"
               >
-                v1/tables?<span class="text-green-600"
+                /v1/tables?<span class="text-green-600"
                   >apikey={YOUR_API_KEY}</span
-                >&<span class="text-red-600">id={MatchId}</span></code
+                >&<span class="text-red-600">id={leagueId}</span></code
               >
               <div class="flex flex-col gap-2">
                 <p class="font-semibold">Example Request:</p>
@@ -373,7 +380,7 @@
             using
             <a
               href="https://expressjs.com/"
-              class="font-extralight hover:text-black"
+              class="font-light hover:text-black"
               target="_blank"
             >
               express.js
@@ -387,10 +394,10 @@
         </div>
       </div>
 
-      <div class="flex flex-col w-1/4 border-l p-5 hidden lg:block gap-3">
+      <div class="flex flex-col w-1/4 p-5 hidden lg:block gap-3">
         <div class="sticky top-20 max-h-screen flex flex-col gap-5">
-          <h1 class="font-bold text-xl">On this page</h1>
-          <div class="flex flex-col gap-3" id="sidebar">
+          <h1 class="font-bold text-lg">On this page</h1>
+          <div class="flex flex-col gap-3 text-sm" id="sidebar">
             <a
               href="#getallleagues"
               class="text-zinc-500 hover:text-blue-500"
@@ -425,10 +432,6 @@
         </div>
       </div>
     </div>
-    <script>
-      var change = document.getElementById("btn");
-      change.focus();
-      document.activeElement.blur();
-    </script>
+    <script></script>
   </body>
 </html>

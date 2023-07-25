@@ -96,8 +96,6 @@ app.get(
   (req, res, next) => {
     // send a regular response
     res.json({ Error, message: "Your are not authorized to access this API." });
-    console.log(req.query);
-    console.log(apiKeys);
   }
 );
 
@@ -116,15 +114,102 @@ app.get(`/v1/allLeagues`, (req, res, next) => {
 //
 
 // GET REQUEST LEAGUE DETAILS
-// https://www.fotmob.com/api/leagues?id=47&ccode3=IDN&season=2022/2023
+app.get(
+  "/v1/leagues",
+  (req, res, next) => {
+    if (req.query.apikey == process.env.MY_API_KEY) next("route");
+    else next();
+  },
+  (req, res, next) => {
+    // send a regular response
+    res.json({ Error, message: "Your are not authorized to access this API." });
+  }
+);
+
+app.get(`/v1/leagues`, (req, res, next) => {
+  const id = req.query.id;
+  const season = req.query.season;
+
+  const getData = async () => {
+    const data = await fetch(
+      `https://www.fotmob.com/api/leagues?id=${id}&season=${season}`
+    ).then((r) => r.json());
+
+    const result = await data;
+
+    res.json({
+      id: id,
+      season: season,
+      responses: result,
+    });
+  };
+  getData();
+});
 
 // GET REQUEST TABLES
-// https://www.fotmob.com/api/tltable?leagueId=47
+app.get(
+  "/v1/tables",
+  (req, res, next) => {
+    if (req.query.apikey == process.env.MY_API_KEY) next("route");
+    else next();
+  },
+  (req, res, next) => {
+    // send a regular response
+    res.json({ Error, message: "Your are not authorized to access this API." });
+  }
+);
+
+app.get(`/v1/tables`, (req, res, next) => {
+  const id = req.query.id;
+
+  const getData = async () => {
+    const data = await fetch(
+      `https://www.fotmob.com/api/tltable?leagueId=${id}`
+    ).then((r) => r.json());
+
+    const result = await data;
+
+    res.json({
+      id: id,
+      responses: result,
+    });
+  };
+  getData();
+});
 
 // GET REQUEST MATCH by id
 //www.fotmob.com/api/match?id=4173719
 
 // GET REQUEST MATCH DETAILS by match id
+app.get(
+  "/v1/matchDetails",
+  (req, res, next) => {
+    if (req.query.apikey == process.env.MY_API_KEY) next("route");
+    else next();
+  },
+  (req, res, next) => {
+    // send a regular response
+    res.json({ Error, message: "Your are not authorized to access this API." });
+  }
+);
+
+app.get(`/v1/matchDetails`, (req, res, next) => {
+  const id = req.query.id;
+
+  const getData = async () => {
+    const data = await fetch(
+      `https://www.fotmob.com/api/matchDetails?matchId=${id}`
+    ).then((r) => r.json());
+
+    const result = await data;
+
+    res.json({
+      id: id,
+      responses: result,
+    });
+  };
+  getData();
+});
 // https://www.fotmob.com/api/matchDetails?matchId=4183889
 
 // GET REQUEST TEAM DETAILS
