@@ -42,22 +42,21 @@
       </nav>
     </header>
 
-    <div class="flex w-full lg:w-2/3 mx-auto justify-center px-5 md:px-0">
+    <div
+      class="flex w-full md:w-4/5 xl:w-2/3 mx-auto justify-center px-5 md:px-0"
+    >
       <div
-        class="flex flex-col gap-5 px-5 items-center min-h-screen w-full pb-5 mt-5"
+        class="flex flex-col gap-5 px-0 md:px-5 items-center min-h-screen w-full pb-5 mt-5"
       >
+        <div class="w-full flex gap-2 items-center">
+          <a href="/" class="text-zinc-400 hover:text-black font-light">Home</a>
+          <i class="bx bx-chevron-right"></i>
+          <p class="font-medium">Documentation</p>
+        </div>
         <div class="flex flex-col gap-3 w-full pb-5">
-          <div class="w-full flex gap-2 items-center">
-            <a href="/" class="text-zinc-400 hover:text-black font-light"
-              >Home</a
-            >
-            <i class="bx bx-chevron-right"></i>
-            <p class="font-medium">Documentation</p>
-          </div>
-
           <h1 class="font-bold text-4xl border-b mt-5">Documentation</h1>
 
-          <p class="font-normal">
+          <p class="font-normal" id="apiendpoint">
             Welcome to Football-API documentations V1. This API based on
             <a
               class="font-semibold hover:underline hover:text-blue-500 inline-flex"
@@ -99,15 +98,12 @@
           <div class="flex flex-col gap-5 mt-10">
             <p
               class="bg-green-500 rounded-md px-2 w-fit hover:bg-green-600 text-white font-bold"
+              id="getallleagues"
             >
               GET
             </p>
 
-            <div
-              class="flex flex-col gap-2 pb-2 mt-5"
-              id="getallleagues"
-              onclick="addSpace()"
-            >
+            <div class="flex flex-col gap-2 pb-2 mt-10">
               <p class="font-bold text-2xl group border-b pb-2">
                 <span class="group-hover:underline group-hover:text-blue-500"
                   >#</span
@@ -154,11 +150,12 @@
         ]</code>
     }
 }</code>
+<p id="getleaguebyid"></p>
           </pre>
               </div>
             </div>
 
-            <div class="flex flex-col gap-2 pb-2 mt-5" id="getleaguebyid">
+            <div class="flex flex-col gap-2 pb-2 mt-5">
               <p class="font-bold text-2xl group border-b pb-3">
                 <span class="group-hover:underline group-hover:text-blue-500"
                   >#</span
@@ -205,11 +202,12 @@
         ]</code>
     }
 }</code>
+<p id="getallmatches"></p>
           </pre>
               </div>
             </div>
 
-            <div class="flex flex-col gap-2 pb-2 mt-5" id="getallmatches">
+            <div class="flex flex-col gap-2 pb-2 mt-5">
               <p class="font-bold text-2xl group border-b pb-2">
                 <span class="group-hover:underline group-hover:text-blue-500"
                   >#</span
@@ -266,12 +264,13 @@
         ]</code>
     }
 }</code>
-          </pre>
+<p id="getmatchdetails"></p>
+</pre>
                 </div>
               </div>
             </div>
 
-            <div class="flex flex-col gap-2 pb-2 mt-5" id="getmatchdetails">
+            <div class="flex flex-col gap-2 pb-2 mt-5">
               <p class="font-bold text-2xl group border-b pb-2">
                 <span class="group-hover:underline group-hover:text-blue-500"
                   >#</span
@@ -318,11 +317,12 @@
         ]</code>
     }
 }</code>
+<p id="gettables"></p>
           </pre>
               </div>
             </div>
 
-            <div class="flex flex-col gap-2 pb-2 mt-5" id="gettables">
+            <div class="flex flex-col gap-2 pb-2 mt-5">
               <p class="font-bold text-2xl group pb-2 border-b">
                 <span class="group-hover:underline group-hover:text-blue-500"
                   >#</span
@@ -369,11 +369,115 @@
         ]</code>
     }
 }</code>
+<p id="getteams"></p>
+          </pre>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2 pb-2 mt-5">
+              <p class="font-bold text-2xl group pb-2 border-b">
+                <span class="group-hover:underline group-hover:text-blue-500"
+                  >#</span
+                >
+                Get Team Details
+              </p>
+              <p class="font-semibold">Endpoint:</p>
+              <code
+                class="text-xs bg-blue-50 p-2 rounded-md overflow-x-auto whitespace-nowrap"
+              >
+                GET /v1/teamDetails?<span class="text-green-600"
+                  >apikey={YOUR_API_KEY}</span
+                >&<span class="text-red-600">id={teamsId}</span></code
+              >
+              <div class="flex flex-col gap-2">
+                <p class="font-semibold">Example Request:</p>
+                <code
+                  class="text-xs bg-blue-50 p-2 rounded-md overflow-x-auto whitespace-nowrap"
+                >
+                  https://api.aditiapras.dev/v1/teamDetails?<span
+                    class="text-green-600"
+                    >apikey={YOUR_API_KEY}</span
+                  >&<span class="text-red-600 font-bold">id=9825</span></code
+                >
+                <p class="font-semibold">Example Response:</p>
+                <pre
+                  class="text-xs bg-blue-50 p-2 w-full rounded-md overflow-x-auto"
+                >
+<code>{
+    <code class="text-blue-600">
+    "responses": </code>{
+      <code class="text-green-600">"favourite": null,</code>
+      <code class="text-green-600">"popular": [
+        {
+          "id": 47,
+          "name": "Premier League",
+          "localizedName": "Premier League"
+        },
+        {
+          "id": 42,
+          "name": "Champions League",
+          "localizedName": "Champions League"
+        }
+        ]</code>
+    }
+}</code>
+          </pre>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-2 pb-2 mt-5" id="getplayers">
+              <p class="font-bold text-2xl group pb-2 border-b">
+                <span class="group-hover:underline group-hover:text-blue-500"
+                  >#</span
+                >
+                Get Player Details
+              </p>
+              <p class="font-semibold">Endpoint:</p>
+              <code
+                class="text-xs bg-blue-50 p-2 rounded-md overflow-x-auto whitespace-nowrap"
+              >
+                GET /v1/playerDetails?<span class="text-green-600"
+                  >apikey={YOUR_API_KEY}</span
+                >&<span class="text-red-600">id={palyersId}</span></code
+              >
+              <div class="flex flex-col gap-2">
+                <p class="font-semibold">Example Request:</p>
+                <code
+                  class="text-xs bg-blue-50 p-2 rounded-md overflow-x-auto whitespace-nowrap"
+                >
+                  https://api.aditiapras.dev/v1/playerDetails?<span
+                    class="text-green-600"
+                    >apikey={YOUR_API_KEY}</span
+                  >&<span class="text-red-600 font-bold">id=24011</span></code
+                >
+                <p class="font-semibold">Example Response:</p>
+                <pre
+                  class="text-xs bg-blue-50 p-2 w-full rounded-md overflow-x-auto"
+                >
+<code>{
+    <code class="text-blue-600">
+    "responses": </code>{
+      <code class="text-green-600">"favourite": null,</code>
+      <code class="text-green-600">"popular": [
+        {
+          "id": 47,
+          "name": "Premier League",
+          "localizedName": "Premier League"
+        },
+        {
+          "id": 42,
+          "name": "Champions League",
+          "localizedName": "Champions League"
+        }
+        ]</code>
+    }
+}</code>
           </pre>
               </div>
             </div>
           </div>
         </div>
+
         <div class="flex items-center justify-between mx-auto gap-3 w-full">
           <p class="text-xs text-zinc-400 flex items-center gap-1">
             Create by <span class="font-semibold text-black">aditiapras</span>
@@ -396,8 +500,14 @@
 
       <div class="flex flex-col w-1/4 p-5 hidden lg:block gap-3">
         <div class="sticky top-20 max-h-screen flex flex-col gap-5">
-          <h1 class="font-bold text-lg">On this page</h1>
+          <h1 class="font-semibold text-base">On this page</h1>
           <div class="flex flex-col gap-3 text-sm" id="sidebar">
+            <a
+              href="#apiendpoint"
+              class="text-zinc-500 hover:text-blue-500"
+              id="btn"
+              >API Endpoint</a
+            >
             <a
               href="#getallleagues"
               class="text-zinc-500 hover:text-blue-500"
@@ -428,10 +538,26 @@
               id="btn"
               >Get Tables by league id</a
             >
+            <a
+              href="#getteams"
+              class="text-zinc-500 hover:text-blue-500"
+              id="btn"
+              >Get Teams by id</a
+            >
+            <a
+              href="#getplayers"
+              class="text-zinc-500 hover:text-blue-500"
+              id="btn"
+              >Get Players by id</a
+            >
+            <p
+              class="text-xs px-3 border rounded-full w-fit bg-zinc-100 hover:shadow-md"
+            >
+              <span class="text-blue-500">●</span> Current Version: v1
+            </p>
           </div>
         </div>
       </div>
     </div>
-    <script></script>
   </body>
 </html>
