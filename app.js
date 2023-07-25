@@ -4,6 +4,7 @@ const port = 3000;
 const cors = require("cors");
 const requestIp = require("request-ip");
 const path = require("path");
+const { error } = require("console");
 require("dotenv").config();
 
 let publicPath = path.join(__dirname, "public");
@@ -138,8 +139,8 @@ app.get(`/v1/leagues`, (req, res, next) => {
     const result = await data;
 
     res.json({
-      id: id,
-      season: season,
+      // id: id,
+      // season: season,
       responses: result,
     });
   };
@@ -155,30 +156,32 @@ app.get(
   },
   (req, res, next) => {
     // send a regular response
-    res.json({ Error, message: "Your are not authorized to access this API." });
+    res.json({
+      message: "Your are not authorized to access this API.",
+    });
   }
 );
 
-app.get(`/v1/tables`, (req, res, next) => {
+app.get(`/v1/tables`, (req, res) => {
   const id = req.query.id;
-
   const getData = async () => {
     const data = await fetch(
       `https://www.fotmob.com/api/tltable?leagueId=${id}`
-    ).then((r) => r.json());
+    )
+      .then((r) => r.json())
+      .catch((error) => {
+        return error;
+      });
 
-    const result = await data;
+    if (!error) {
+      return "";
+    }
 
-    res.json({
-      id: id,
-      responses: result,
-    });
+    res.send(await data);
   };
+  s;
   getData();
 });
-
-// GET REQUEST MATCH by id
-//www.fotmob.com/api/match?id=4173719
 
 // GET REQUEST MATCH DETAILS by match id
 app.get(
@@ -204,13 +207,11 @@ app.get(`/v1/matchDetails`, (req, res, next) => {
     const result = await data;
 
     res.json({
-      id: id,
-      responses: result,
+      data: result,
     });
   };
   getData();
 });
-// https://www.fotmob.com/api/matchDetails?matchId=4183889
 
 // GET REQUEST TEAM DETAILS
 // https://www.fotmob.com/api/teams?id=9825&ccode3=IDN
