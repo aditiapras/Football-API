@@ -5,15 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Football-API</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <link href="./style.css" rel="stylesheet" /> -->
     <script
       src="https://kit.fontawesome.com/a308cba98e.js"
       crossorigin="anonymous"
     ></script>
     <style>
       @import url("https://fonts.cdnfonts.com/css/sf-pro-display");
+      @import url("https://fonts.cdnfonts.com/css/sf-ui-display");
       @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
       body {
-        font-family: "SF Pro Display", sans-serif;
+        font-family: "SF UI Display", sans-serif;
+      }
+      /* width */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      /* Track */
+      ::-webkit-scrollbar-track {
+        background: #f4f4f5;
+      }
+
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: #a1a1aa;
+        border-radius: 3px;
+      }
+
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a1a1aa;
       }
     </style>
     <link
@@ -27,17 +50,44 @@
   </head>
   <body>
     <div
-      class="flex flex-col gap-5 items-center justify-center min-h-screen w-full px-5 md:px-0"
+      class="relative flex flex-col gap-10 items-center justify-center w-full px-5 md:px-0 py-10 lg:py-20"
+      id="first"
     >
-      <div>
-        <h1 class="font-bold text-4xl md:text-6xl text-center px-5">
-          Football API
+      <div class="lg:w-[300px] lg:h-[300px]">
+        <svg
+          height="250px"
+          width="250px"
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 25.999 25.999"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              style="fill: #030104"
+              d="M15.536,14.894l-4.43-4.43c1.243-0.929,3.011-0.841,4.142,0.288
+		C16.377,11.883,16.465,13.65,15.536,14.894z M4.651,16.854L2.725,18.78l4.496,4.496l1.926-1.927L4.651,16.854z M21.349,9.147
+		l1.926-1.926l-4.496-4.495l-1.926,1.926L21.349,9.147z M0.799,16.853l1.284,1.285l2.568-2.568l5.78,5.779l-2.568,2.569l1.284,1.283
+		c1.064,1.064,2.788,1.064,3.853,0l5.778-5.778l-3.243-3.244c-1.604,1.28-3.94,1.197-5.425-0.289
+		c-1.486-1.484-1.569-3.82-0.289-5.425L6.578,7.222L0.799,13C-0.266,14.064-0.266,15.788,0.799,16.853z M10.752,15.248
+		c1.13,1.129,2.898,1.217,4.143,0.288l-4.431-4.43C9.535,12.351,9.623,14.118,10.752,15.248z M13,0.799l-5.778,5.78l3.242,3.242
+		c1.604-1.279,3.94-1.196,5.426,0.289s1.568,3.821,0.289,5.426l3.243,3.243L25.201,13c1.064-1.064,1.064-2.788,0-3.853l-1.284-1.284
+		l-2.568,2.568l-5.78-5.779l2.568-2.568l-1.284-1.285C15.788-0.266,14.064-0.266,13,0.799z"
+            />
+          </g>
+        </svg>
+      </div>
+      <div class="w-full px-5 lg:px-0 lg:w-2/3">
+        <h1 class="font-bold text-3xl md:text-6xl text-center px-5">
+          Get your latest update on football with this Football-API.
         </h1>
       </div>
-      <p class="text-center">
+      <p class="text-center px-5 lg:px-0 lg:w-1/2 md:text-xl font-light">
         Welcome to Football-API documentations V1. This API based on
         <a
-          class="font-semibold hover:underline hover:text-blue-500 inline-flex"
+          class="font-bold hover:underline hover:text-blue-500 inline-flex"
           href="https://fotmob.com"
           target="_blank"
         >
@@ -46,16 +96,166 @@
             <i class="bi bi-box-arrow-up-right text-xs"></i>
           </span>
         </a>
-        .
+        . Covered <span class="font-bold">more than 500</span> football leagues
+        in the world. This API provide
+        <span class="font-bold">real-time</span> data update in every single
+        league.
       </p>
       <a
-        class="group px-5 py-2 rounded-md border bg-black text-white flex gap-3 items-center hover:bg-white hover:border-black hover:text-black transition durarion-300"
+        class="group px-5 py-2 rounded-md border border-black bg-black text-white inline-flex gap-3 items-baseline hover:bg-white hover:border-black hover:text-black transition durarion-300"
         href="documentation-v1"
       >
-        <p>Documentation</p>
+        <p class="tracking-wide">Documentation</p>
         <i
-          class="fa-solid fa-chevron-right group-hover:translate-x-1 transition durarion-300"
+          class="fa-solid fa-chevron-right group-hover:translate-x-1 transition durarion-300 text-sm"
         ></i>
+      </a>
+    </div>
+
+    <div
+      class="flex flex-col gap-7 items-center justify-center w-full px-0 py-10"
+    >
+      <div
+        class="w-full px-5 md:w-3/4 lg:w-2/3 md:px-0 flex flex-col gap-5 items-center justify-center"
+      >
+        <h1
+          class="text-3xl md:text-4xl text-center font-semibold text-zinc-900"
+        >
+          Large data coverage
+        </h1>
+        <p class="font-light text-center">
+          This API provide large amount of football data all over the world.
+          Also, it provides real-time data in every live matches, including
+          events, score, line-up, substitutes, etc.
+        </p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
+          <div
+            class="border hover:border-zinc-700 border-zinc-200 p-5 rounded-md bg-zinc-200 hover:bg-zinc-100 flex flex-col gap-2 transition ease-in-out duration-300"
+          >
+            <p class="font-bold">500+</p>
+            <p class="font-light tracking-wide">
+              Covered more than 500 leagues all over the world.
+            </p>
+          </div>
+          <div
+            class="border hover:border-zinc-700 border-zinc-200 p-5 rounded-md bg-zinc-200 hover:bg-zinc-100 flex flex-col gap-2 transition ease-in-out duration-300"
+          >
+            <p class="font-bold">Real-time</p>
+            <p class="font-light tracking-wide">
+              Real time data update on live events.
+            </p>
+          </div>
+          <div
+            class="border hover:border-zinc-700 border-zinc-200 p-5 rounded-md bg-zinc-200 hover:bg-zinc-100 flex flex-col gap-2 transition ease-in-out duration-300"
+          >
+            <p class="font-bold">Easy to use</p>
+            <p class="font-light tracking-wide">
+              Easily integrate with your app or project.
+            </p>
+          </div>
+          <div
+            class="border hover:border-zinc-700 border-zinc-200 p-5 rounded-md bg-zinc-200 hover:bg-zinc-100 flex flex-col gap-2 transition ease-in-out duration-300"
+          >
+            <p class="font-bold">Historical data</p>
+            <p class="font-light tracking-wide">
+              Large coverage on historical data.
+            </p>
+          </div>
+          <div
+            class="border hover:border-zinc-700 border-zinc-200 p-5 rounded-md bg-zinc-200 hover:bg-zinc-100 flex flex-col gap-2 transition ease-in-out duration-300"
+          >
+            <p class="font-bold">Fixtures & Schedule</p>
+            <p class="font-light tracking-wide">
+              Support latest fixture and upcoming schedule.
+            </p>
+          </div>
+          <div
+            class="border hover:border-zinc-700 border-zinc-200 p-5 rounded-md bg-zinc-200 hover:bg-zinc-100 flex flex-col gap-2 transition ease-in-out duration-300"
+          >
+            <p class="font-bold">Live Standing</p>
+            <p class="font-light tracking-wide">
+              Provide Live standing during match.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="flex flex-col gap-5 items-center justify-center w-full px-5 md:px-0 py-10"
+    >
+      <h1 class="font-semibold text-3xl md:text-4xl text-center">
+        Response Example (JSON)
+      </h1>
+      <p class="font-light text-center px-5 lg:px-0">
+        Here are response example (JSON) from this API that you will get. This
+        API is easily integrate with your app and project as well.
+      </p>
+      <div
+        class="bg-zinc-100 hover:bg-zinc-200/50 p-5 rounded-md w-[98%] md:w-[50%] overflow-auto text-xs md:text-base max-h-96"
+      >
+        <pre class="leading-tight">
+<code class="text-zinc-500">https://api.aditiapras.dev/v1/allLeagues?apikey={YOUR_API_KEY}</code>
+
+<code>{
+  responses: {
+    <code class="text-blue-500">popular: [
+      <code class="text-green-500">{
+        "id"    : "47",
+        "name"  : "Premier League",
+        "localizedName": "Premier League"
+      },
+      {
+        "id"    : "42",
+        "name"  : "Champions League",
+        "localizedName": "Champions League"
+      },
+      {
+        "id"    : "87",
+        "name"  : "La Liga",
+        "localizedName": "LaLiga"
+      }</code>
+    ],</code>
+    <code class="text-blue-500">international: [
+      <code class="text-green-500">{
+        "ccode": "INT",
+        "name": "International",
+        "leagues": [
+          {
+            "id": 525,
+            "name": "AFC Champions League",
+            "localizedName": "AFC Champions League",
+          },
+          {
+            "id": 9469,
+            "name": "AFC Cup",
+            "localizedName": "AFC Cup",
+          }
+        ]
+      }</code>
+    ]</code>
+  }  
+}</code></pre>
+      </div>
+    </div>
+    <div
+      class="flex flex-col gap-5 items-center justify-center w-full px-5 md:px-0 py-10"
+    >
+      <h1 class="text-4xl font-bold text-center">Get started using our API!</h1>
+      <a
+        class="px-5 py-2 border rounded-md hover:border-black transition ease-in-out duration-300 font-semibold tracking-wide hover:bg-black hover:text-white"
+        href="#first"
+        >get started</a
+      >
+    </div>
+    <div
+      class="flex w-full px-5 lg:px0 lg:w-2/3 items-center justify-between border-b mx-auto mb-10"
+    >
+      <p class="font-light text-sm text-zinc-500 tracking-wide">
+        Create by <span class="text-black font-bold">aditiapras</span>
+      </p>
+      <a href="https://github.com/aditiapras" target="_blank">
+        <i class="bx bxl-github text-2xl text-zinc-500 hover:text-black"></i>
       </a>
     </div>
   </body>
