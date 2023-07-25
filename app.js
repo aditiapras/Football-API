@@ -17,7 +17,7 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.sendFile(`${publicPath}/index.html`);
 });
-//
+
 app.get("/documentation-v1", (req, res) => {
   res.sendFile(`${docPath}/documentation.html`);
 });
@@ -105,10 +105,8 @@ app.get(`/v1/allLeagues`, (req, res, next) => {
     const data = await fetch(`https://www.fotmob.com/api/allLeagues`).then(
       (r) => r.json()
     );
-    const result = await data;
-    res.json({
-      responses: result,
-    });
+
+    res.json(await data);
   };
   getData();
 });
@@ -139,9 +137,7 @@ app.get(`/v1/leagues`, (req, res, next) => {
     const result = await data;
 
     res.json({
-      // id: id,
-      // season: season,
-      responses: result,
+      data: result,
     });
   };
   getData();
@@ -179,7 +175,7 @@ app.get(`/v1/tables`, (req, res) => {
 
     res.send(await data);
   };
-  s;
+
   getData();
 });
 
@@ -204,17 +200,62 @@ app.get(`/v1/matchDetails`, (req, res, next) => {
       `https://www.fotmob.com/api/matchDetails?matchId=${id}`
     ).then((r) => r.json());
 
-    const result = await data;
-
-    res.json({
-      data: result,
-    });
+    res.json(await data);
   };
   getData();
 });
 
 // GET REQUEST TEAM DETAILS
-// https://www.fotmob.com/api/teams?id=9825&ccode3=IDN
+app.get(
+  "/v1/teamDetails",
+  (req, res, next) => {
+    if (req.query.apikey == process.env.MY_API_KEY) next("route");
+    else next();
+  },
+  (req, res, next) => {
+    // send a regular response
+    res.json({ Error, message: "Your are not authorized to access this API." });
+  }
+);
+
+app.get(`/v1/teamDetails`, (req, res, next) => {
+  const id = req.query.id;
+
+  const getData = async () => {
+    const data = await fetch(`https://www.fotmob.com/api/teams?id=${id}`).then(
+      (r) => r.json()
+    );
+
+    res.json(await data);
+  };
+  getData();
+});
+
+// GET REQUEST PLAYERS DETAILS
+app.get(
+  "/v1/playerDetails",
+  (req, res, next) => {
+    if (req.query.apikey == process.env.MY_API_KEY) next("route");
+    else next();
+  },
+  (req, res, next) => {
+    // send a regular response
+    res.json({ Error, message: "Your are not authorized to access this API." });
+  }
+);
+
+app.get(`/v1/playerDetails`, (req, res, next) => {
+  const id = req.query.id;
+
+  const getData = async () => {
+    const data = await fetch(
+      `https://www.fotmob.com/api/playerData?id=${id}`
+    ).then((r) => r.json());
+
+    res.json(await data);
+  };
+  getData();
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
