@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
 app.get("/documentation-v1", (req, res) => {
   res.sendFile(`${docPath}/documentation.html`);
 });
+
 //
 
 //  GET REQUEST LOCATION
@@ -89,6 +90,7 @@ app.get(`/v1/matches`, (req, res, next) => {
 app.get(
   "/v1/allLeagues",
   (req, res, next) => {
+    const headers = res.set({ "X-API-Key": process.env.MY_API_KEY });
     // if the user ID is 0, skip to the next route
     if (req.query.apikey == process.env.MY_API_KEY) next("route");
     // otherwise pass the control to the next middleware function in this stack

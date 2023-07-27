@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start": "node index.js",
     "tw": "postcss ./public/main.css -o ./public/style.css"
   },
   "author": "aditiapras",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",
+    "nodemon": "^3.0.1",
     "postcss": "^8.4.27",
     "tailwind-scrollbar": "^3.0.4",
     "tailwindcss": "^3.3.3"
