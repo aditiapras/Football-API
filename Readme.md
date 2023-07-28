@@ -6,7 +6,7 @@ This API is based on [Fotmob's](https://fotmob.com) API, i simplified API respon
 
 Checkout the documentation how to use this API at [api.aditiapras.dev](https://api.aditiapras.dev).
 
-If you want to test the API, here's the test API_KEY=61600540.
+If you want to test the API, here's the test **API_KEY=61600540**.
 
 ### Contributing
 
