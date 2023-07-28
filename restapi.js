@@ -3,6 +3,10 @@ const app = express();
 const port = 3001;
 const path = require("path");
 const cors = require("cors");
+const teamById = require("./teams/teamsDetails.js");
+const teamSquad = require("./teams/squadByTeamId.js");
+const teamStat = require("./teams/teamStats.js");
+
 require("dotenv").config();
 
 app.use(cors());
@@ -22,6 +26,11 @@ const isAuth = (req, res, next) => {
   }
 };
 
+// ** TEAMS Endpoint **
+app.get("/teams", teamById);
+app.get("/teams/squad", teamSquad);
+app.get("/teams/stats", teamStat);
+
 // API HOMEPAGE
 app.get("/", (req, res) => {
   res.sendFile(`${publicPath}/index.html`);
@@ -31,7 +40,9 @@ app.get("/documentation-v1", (req, res) => {
   res.sendFile(`${docPath}/documentation.html`);
 });
 
-// GET LEAGUES
+// ** LEAGUE ENDPOINT **
+
+// List All League
 app.get("/v1/allLeagues", isAuth, (req, res) => {
   const getAllLeagues = async () => {
     const allLeagues = await fetch(
@@ -40,7 +51,15 @@ app.get("/v1/allLeagues", isAuth, (req, res) => {
     const result = await allLeagues;
 
     const popular = result.popular.map((pop) => {
-      return { id: pop.id, name: pop.name, localizedName: pop.localizedName };
+      return {
+        id: pop.id,
+        name: pop.name,
+        localizedName: pop.localizedName,
+        logo: {
+          light: `https://images.fotmob.com/image_resources/logo/leaguelogo/${pop.id}.png`,
+          dark: `https://images.fotmob.com/image_resources/logo/leaguelogo/dark/${pop.id}.png`,
+        },
+      };
     });
 
     const international = result.international.map((int) => {
@@ -49,6 +68,10 @@ app.get("/v1/allLeagues", isAuth, (req, res) => {
           id: league.id,
           name: league.name,
           localizedName: league.localizedName,
+          logo: {
+            light: `https://images.fotmob.com/image_resources/logo/leaguelogo/${league.id}.png`,
+            dark: `https://images.fotmob.com/image_resources/logo/leaguelogo/dark/${league.id}.png`,
+          },
         };
       });
       return { ccode: int.ccode, name: int.name, leagues };
@@ -60,6 +83,10 @@ app.get("/v1/allLeagues", isAuth, (req, res) => {
           id: league.id,
           name: league.name,
           localizedName: cou.localizedName,
+          logo: {
+            light: `https://images.fotmob.com/image_resources/logo/leaguelogo/${league.id}.png`,
+            dark: `https://images.fotmob.com/image_resources/logo/leaguelogo/dark/${league.id}.png`,
+          },
         };
       });
       return { ccode: cou.ccode, name: cou.name, leagues };
@@ -70,7 +97,7 @@ app.get("/v1/allLeagues", isAuth, (req, res) => {
   getAllLeagues();
 });
 
-// GET LEAGUE BY ID
+// League Information by league ID
 app.get("/v1/leagues", isAuth, (req, res) => {
   let id = req.query.id;
   let season = req.query.season;
@@ -87,39 +114,71 @@ app.get("/v1/leagues", isAuth, (req, res) => {
     ).then((r) => r.json());
 
     const allAvailableSeasons = leagues.allAvailableSeasons;
-    const detail = leagues.details;
-    const details = {};
-    details.id = detail.id;
-    details.type = detail.type;
-    details.name = detail.name;
-    details.selectedSeason = detail.selectedSeason;
-    details.latestSeason = detail.latestSeason;
-    details.shortName = detail.shortName;
-    details.country = detail.country;
-    details.logo = {};
-    details.logo.light = `https://images.fotmob.com/image_resources/logo/leaguelogo/${detail.id}.png`;
-    details.logo.dark = `https://images.fotmob.com/image_resources/logo/leaguelogo/dark/${detail.id}.png`;
+
+    const details = {
+      id: leagues.details.id,
+      type: leagues.details.type,
+      name: leagues.details.name,
+      selectedSeason: leagues.details.selectedSeason,
+      latestSeason: leagues.details.latestSeason,
+      shortName: leagues.details.shortName,
+      country: leagues.details.country,
+      logo: {
+        light: `https://images.fotmob.com/image_resources/logo/leaguelogo/${leagues.details.id}.png`,
+        dark: `https://images.fotmob.com/image_resources/logo/leaguelogo/dark/${leagues.details.id}.png`,
+      },
+    };
 
     const match = leagues.matches;
     const matches = {};
     matches.firstUnplayedMatch = match.firstUnplayedMatch;
     matches.allMatches = match.allMatches.map((match) => {
+      const home = {
+        name: match.home.name,
+        shortName: match.home.shortName,
+        id: match.home.id,
+        logo: {
+          normal:
+            (match.home.logo = `https://images.fotmob.com/image_resources/logo/teamlogo/${match.home.id}.png`),
+          small:
+            (match.home.logo = `https://images.fotmob.com/image_resources/logo/teamlogo/${match.home.id}_xsmall.png`),
+        },
+      };
+
+      const away = {
+        name: match.away.name,
+        shortName: match.away.shortName,
+        id: match.away.id,
+        logo: {
+          normal:
+            (match.away.logo = `https://images.fotmob.com/image_resources/logo/teamlogo/${match.away.id}.png`),
+          small:
+            (match.away.logo = `https://images.fotmob.com/image_resources/logo/teamlogo/${match.away.id}_xsmall.png`),
+        },
+      };
+
       return {
         round: match.round,
         roundName: match.roundName,
         id: match.id,
-        home: match.home,
-        away: match.away,
+        home: home,
+        away: away,
         status: match.status,
       };
     });
 
-    res.json({ allAvailableSeasons, details, matches });
+    res.json({ details, allAvailableSeasons });
   };
   getLeagues();
 });
 
-// GET MATCHES
+// ---------END-----------
+
+// --------------------------------------------------
+
+// ** MATCHES ENDPOINT **
+
+// Matches by Date
 app.get("/v1/matches", isAuth, (req, res) => {
   const date = req.query.date;
   const timezone = req.query.timezone;
@@ -139,7 +198,11 @@ app.get("/v1/matches", isAuth, (req, res) => {
   getMatches();
 });
 
-// GET MATCH DETAILS
+// Matches by League ID
+
+// Matches by Teams ID
+
+// Matches Detail
 app.get("/v1/matchDetails", isAuth, (req, res) => {
   const id = req.query.id;
 
@@ -156,7 +219,11 @@ app.get("/v1/matchDetails", isAuth, (req, res) => {
   getMatchDetails();
 });
 
-// GET TABLES
+// *---------END-----------*
+
+// --------------------------------------------------
+
+// ** TABLES ENDPOINT **
 app.get("/v1/tables", isAuth, (req, res) => {
   const id = req.query.id;
 
@@ -184,7 +251,11 @@ app.get("/v1/tables", isAuth, (req, res) => {
   getTables();
 });
 
-// GET TEAMS
+// *---------END-----------*
+
+// --------------------------------------------------
+
+// ** TEAMS ENDPOINT **
 app.get("/v1/teams", isAuth, (req, res) => {
   const id = req.query.id;
 
@@ -202,8 +273,11 @@ app.get("/v1/teams", isAuth, (req, res) => {
   };
   getTeams();
 });
+// *---------END-----------*
 
-// GET PLAYERS
+// --------------------------------------------------
+
+// ** PLAYERS ENDPOINT **
 app.get("/v1/players", isAuth, (req, res) => {
   const id = req.query.id;
 
@@ -221,5 +295,8 @@ app.get("/v1/players", isAuth, (req, res) => {
   };
   getPlayers();
 });
+// *---------END-----------*
+
+// --------------------------------------------------
 
 app.listen(port, () => console.log(`Express app running on port ${port}!`));
