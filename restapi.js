@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 3001;
 const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
@@ -37,8 +37,35 @@ app.get("/v1/allLeagues", isAuth, (req, res) => {
     const allLeagues = await fetch(
       `https://www.fotmob.com/api/allLeagues`
     ).then((r) => r.json());
+    const result = await allLeagues;
 
-    res.json(allLeagues);
+    const popular = result.popular.map((pop) => {
+      return { id: pop.id, name: pop.name, localizedName: pop.localizedName };
+    });
+
+    const international = result.international.map((int) => {
+      const leagues = int.leagues.map((league) => {
+        return {
+          id: league.id,
+          name: league.name,
+          localizedName: league.localizedName,
+        };
+      });
+      return { ccode: int.ccode, name: int.name, leagues };
+    });
+
+    const countries = result.countries.map((cou) => {
+      const leagues = cou.leagues.map((league) => {
+        return {
+          id: league.id,
+          name: league.name,
+          localizedName: cou.localizedName,
+        };
+      });
+      return { ccode: cou.ccode, name: cou.name, leagues };
+    });
+
+    res.json({ popular, international, countries });
   };
   getAllLeagues();
 });
@@ -59,7 +86,35 @@ app.get("/v1/leagues", isAuth, (req, res) => {
       `https://www.fotmob.com/api/leagues?id=${id}&season=${season}`
     ).then((r) => r.json());
 
-    res.json(leagues);
+    const allAvailableSeasons = leagues.allAvailableSeasons;
+    const detail = leagues.details;
+    const details = {};
+    details.id = detail.id;
+    details.type = detail.type;
+    details.name = detail.name;
+    details.selectedSeason = detail.selectedSeason;
+    details.latestSeason = detail.latestSeason;
+    details.shortName = detail.shortName;
+    details.country = detail.country;
+    details.logo = {};
+    details.logo.light = `https://images.fotmob.com/image_resources/logo/leaguelogo/${detail.id}.png`;
+    details.logo.dark = `https://images.fotmob.com/image_resources/logo/leaguelogo/dark/${detail.id}.png`;
+
+    const match = leagues.matches;
+    const matches = {};
+    matches.firstUnplayedMatch = match.firstUnplayedMatch;
+    matches.allMatches = match.allMatches.map((match) => {
+      return {
+        round: match.round,
+        roundName: match.roundName,
+        id: match.id,
+        home: match.home,
+        away: match.away,
+        status: match.status,
+      };
+    });
+
+    res.json({ allAvailableSeasons, details, matches });
   };
   getLeagues();
 });

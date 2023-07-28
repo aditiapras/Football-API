@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 3001;
 const path = require("path");
 const cors = require("cors");
 require("dotenv").config();
@@ -11,7 +11,8 @@ let docPath = path.join(__dirname, "public");
 
 const isAuth = (req, res, next) => {
   const auth = req.header("X-API-KEY");
-  if (auth === process.env.API_KEY) {
+  const base = req.header("X-Base-URL");
+  if (auth === process.env.API_KEY && base === process.env.BASE_URL) {
     next();
   } else {
     res.status(401);
