@@ -2,9 +2,9 @@
 
 ### Create using [express.js](https://expressjs.com)
 
-This API is based on [Fotmob's](https://fotmob.com) API.
+This API is based on [Fotmob's](https://fotmob.com) API, i simplified API response from [Fotmob's](https://fotmob.com) API to make it easier to use.
 
-Checkout the documentation how to use this API at [api.aditiapras.dev](https://api.aditiapras.dev)
+Checkout the documentation how to use this API at [api.aditiapras.dev](https://api.aditiapras.dev) (Currently on Development).
 
 ### Contributing
 
