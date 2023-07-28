@@ -4,8 +4,9 @@ const port = 3001;
 const path = require("path");
 const cors = require("cors");
 const teamById = require("./teams/teamsDetails.js");
-const teamSquad = require("./teams/squadByTeamId.js");
-const teamStat = require("./teams/teamStats.js");
+const teamSquad = require("./teams/teamsSquads.js");
+const teamFixtures = require("./teams/teamsFixtures.js");
+const teamTransfers = require("./teams/teamsTransfers.js");
 
 require("dotenv").config();
 
@@ -29,7 +30,8 @@ const isAuth = (req, res, next) => {
 // ** TEAMS Endpoint **
 app.get("/teams", teamById);
 app.get("/teams/squad", teamSquad);
-app.get("/teams/stats", teamStat);
+app.get("/teams/fixtures", teamFixtures);
+app.get("/teams/transfers", teamTransfers);
 
 // API HOMEPAGE
 app.get("/", (req, res) => {
