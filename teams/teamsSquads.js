@@ -9,7 +9,7 @@ module.exports = (req, res) => {
       `https://www.fotmob.com/api/teams?id=${id}`
     ).then((r) => r.json());
 
-    res.json({ squads: squads.squad });
+    res.json({ squad: squads.squad });
   };
   getSquads();
 };
