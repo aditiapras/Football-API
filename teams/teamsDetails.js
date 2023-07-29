@@ -19,13 +19,16 @@ module.exports = (req, res) => {
         normal: team.details.sportsTeamJSONLD.logo,
         small: `https://images.fotmob.com/image_resources/logo/teamlogo/${team.details.id}_xsmall.png`,
       },
-      coach: team.details.sportsTeamJSONLD.coach.name,
       league: team.details.sportsTeamJSONLD.memberOf.name,
       venue: team.overview.venue,
     };
-    const history = team.history.trophyList;
+    const histories = () => {
+      const history = team.history;
+      const retruned = !history ? { trophyList: "null" } : history.trophyList;
+      return retruned;
+    };
 
-    res.json({ details, history: { trophyList: history } });
+    res.json({ details, history: histories() });
   };
   getTeams();
 };
