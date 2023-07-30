@@ -13,6 +13,9 @@ const leagueDetails = require("./leagues/leagueDetails.js");
 const leagueTables = require("./leagues/leagueTables.js");
 const leagueTransfers = require("./leagues/leagueTransfers.js");
 const leagueFixtures = require("./leagues/leagueFixtures.js");
+const matchPlayoff = require("./matches/matchesPlayoff.js");
+const matchByDate = require("./matches/matchesByDate.js");
+const liveMatches = require("./matches/liveMatches.js");
 
 require("dotenv").config();
 
@@ -45,6 +48,9 @@ app.get("/leagues/transfers", leagueTransfers);
 app.get("/leagues/fixtures", leagueFixtures);
 
 // ** MATCHES ENDPOINT **
+app.get("/matches/playoff", matchPlayoff);
+app.get("/matches", matchByDate);
+app.get("/matches/live", liveMatches);
 
 // Matches by Date
 // app.get("/v1/matches", isAuth, (req, res) => {
