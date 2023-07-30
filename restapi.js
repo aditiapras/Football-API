@@ -7,15 +7,17 @@ const teamById = require("./teams/teamsDetails.js");
 const teamSquad = require("./teams/teamsSquads.js");
 const teamFixtures = require("./teams/teamsFixtures.js");
 const teamTransfers = require("./teams/teamsTransfers.js");
+const teamForms = require("./teams/teamForm.js");
 const allLeagues = require("./leagues/allLeagues.js");
 const leagueDetails = require("./leagues/leagueDetails.js");
 const leagueTables = require("./leagues/leagueTables.js");
 const leagueTransfers = require("./leagues/leagueTransfers.js");
-const leagueMatches = require("./leagues/leagueTransfers.js");
+const leagueFixtures = require("./leagues/leagueFixtures.js");
 
 require("dotenv").config();
 
 app.use(cors());
+
 let publicPath = path.join(__dirname, "public");
 let docPath = path.join(__dirname, "public");
 
@@ -33,13 +35,14 @@ app.get("/teams", teamById);
 app.get("/teams/squads", teamSquad);
 app.get("/teams/fixtures", teamFixtures);
 app.get("/teams/transfers", teamTransfers);
+app.get("/teams/forms", teamForms);
 
 // ** LEAGUE ENDPOINT **
 app.get("/allLeagues", allLeagues);
 app.get("/leagues", leagueDetails);
 app.get("/leagues/tables", leagueTables);
 app.get("/leagues/transfers", leagueTransfers);
-// app.get("/leagues/matches", leagueMatches);
+app.get("/leagues/fixtures", leagueFixtures);
 
 // ** MATCHES ENDPOINT **
 
