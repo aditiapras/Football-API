@@ -6,7 +6,7 @@ module.exports = (req, res) => {
   const timezone = moment.tz.guess();
   const getLive = async () => {
     const live = await fetch(
-      `https://www.fotmob.com/api/matches?date=${date}`
+      `https://www.fotmob.com/api/matches?date=${date}&timezone=${timezone}`
     ).then((r) => r.json());
 
     const liveMatches = live.leagues.map((league) => {
