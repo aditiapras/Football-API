@@ -24,7 +24,7 @@ module.exports = (req, res) => {
     };
     const histories = () => {
       const history = team.history;
-      const retruned = !history ? { trophyList: "null" } : history.trophyList;
+      const retruned = !history ? { trophyList: "null" } : history;
       return retruned;
     };
 
