@@ -3,6 +3,7 @@ const moment = require("moment-timezone");
 module.exports = (req, res) => {
   const date = moment().format("YYYYMMDD");
   const currentDate = moment().format("LLLL");
+  const utcTime = moment.utc();
   const timezone = moment.tz.guess();
   const getLive = async () => {
     const live = await fetch(
@@ -31,7 +32,12 @@ module.exports = (req, res) => {
 
     const liveMatch = liveMatches.filter((match) => match.matches != "");
 
-    res.json({ date: currentDate, timezone: timezone, liveMatches: liveMatch });
+    res.json({
+      datetime: currentDate,
+      utcTime: utcTime,
+      timezone: timezone,
+      liveMatches: liveMatch,
+    });
   };
   getLive();
 };
