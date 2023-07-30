@@ -16,6 +16,7 @@ const leagueFixtures = require("./leagues/leagueFixtures.js");
 const matchPlayoff = require("./matches/matchesPlayoff.js");
 const matchByDate = require("./matches/matchesByDate.js");
 const liveMatches = require("./matches/liveMatches.js");
+const matchDetails = require("./matches/matchDetail.js");
 
 require("dotenv").config();
 
@@ -51,30 +52,7 @@ app.get("/leagues/fixtures", leagueFixtures);
 app.get("/matches/playoff", matchPlayoff);
 app.get("/matches", matchByDate);
 app.get("/matches/live", liveMatches);
-
-// Matches by Date
-// app.get("/v1/matches", isAuth, (req, res) => {
-//   const date = req.query.date;
-//   const timezone = req.query.timezone;
-//   const ccode = req.query.ccode3;
-
-//   const getMatches = async () => {
-//     if (!date) {
-//       return res.json({ error: "Require date, date cannot be empty!" });
-//     }
-
-//     const matches = await fetch(
-//       `https://www.fotmob.com/api/matches?date=${date}&timezone=${timezone}&ccode3=${ccode}`
-//     ).then((r) => r.json());
-
-//     res.json(matches);
-//   };
-//   getMatches();
-// });
-
-// Matches by League ID
-
-// Matches by Teams ID
+app.get("/matches/details", matchDetails);
 
 // Matches Detail
 // app.get("/v1/matchDetails", isAuth, (req, res) => {
