@@ -3,16 +3,10 @@ module.exports = (req, res) => {
   const season = req.query.season;
 
   const getLeagues = async () => {
-    if (!id) {
-      return res.json({
-        error: "Required League ID, League ID cannot be empty!",
-      });
-    }
-
-    const leagues = await fetch(
+    const league = await fetch(
       `https://www.fotmob.com/api/leagues?id=${id}&season=${season}`
     ).then((r) => r.json());
-
+    const leagues = await league;
     const allAvailableSeasons = leagues.allAvailableSeasons;
 
     const details = {
@@ -58,6 +52,7 @@ module.exports = (req, res) => {
       };
 
       return {
+        query: { id: id, season: season },
         round: match.round,
         roundName: match.roundName,
         id: match.id,
@@ -69,5 +64,13 @@ module.exports = (req, res) => {
 
     res.json({ details, allAvailableSeasons });
   };
-  getLeagues();
+
+  if (!id) {
+    res.status(400).json({
+      result: null,
+      error: "Required League ID, League ID cannot be empty!",
+    });
+  } else {
+    getLeagues();
+  }
 };
