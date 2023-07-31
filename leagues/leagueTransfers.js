@@ -11,6 +11,6 @@ module.exports = (req, res) => {
   if (!id) {
     res.status(400).json({ result: null, error: "Required League ID" });
   } else {
-    getTables();
+    getTransfers();
   }
 };
