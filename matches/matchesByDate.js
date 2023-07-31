@@ -1,5 +1,3 @@
-const moment = require("moment-timezone");
-
 module.exports = (req, res) => {
   const date = req.query.date;
   const timezone = req.query.timezone;
