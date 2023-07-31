@@ -28,5 +28,10 @@ module.exports = (req, res) => {
 
     res.json({ forms });
   };
-  getForms();
+
+  if (!id) {
+    res.status(400).json({ result: null, error: "Required Team ID" });
+  } else {
+    getForms();
+  }
 };
