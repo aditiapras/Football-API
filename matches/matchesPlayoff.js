@@ -86,5 +86,9 @@ module.exports = (req, res) => {
       },
     });
   };
-  getPlayoff();
+  if (!id) {
+    res.status(404).json({ result: null, error: "Required ID parameter!" });
+  } else {
+    getPlayoff();
+  }
 };
