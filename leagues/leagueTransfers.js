@@ -8,5 +8,9 @@ module.exports = (req, res) => {
     ).then((r) => r.json());
     res.json({ transfers: transfers.transfers });
   };
-  getTransfers();
+  if (!id) {
+    res.status(400).json({ result: null, error: "Required League ID" });
+  } else {
+    getTables();
+  }
 };
