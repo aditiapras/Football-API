@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3001;
+const port = 4003;
 const path = require("path");
 const cors = require("cors");
 const teamById = require("./teams/teamsDetails.js");
@@ -17,6 +17,7 @@ const matchPlayoff = require("./matches/matchesPlayoff.js");
 const matchByDate = require("./matches/matchesByDate.js");
 const liveMatches = require("./matches/liveMatches.js");
 const matchDetails = require("./matches/matchDetail.js");
+const location = require("./mylocation/location.js");
 
 require("dotenv").config();
 
@@ -53,5 +54,7 @@ app.get("/matches/playoff", matchPlayoff);
 app.get("/matches", matchByDate);
 app.get("/matches/live", liveMatches);
 app.get("/matches/details", matchDetails);
+
+app.get("/mylocation", location);
 
 app.listen(port, () => console.log(`Express app running on port ${port}!`));
