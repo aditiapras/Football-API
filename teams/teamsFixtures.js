@@ -77,5 +77,9 @@ module.exports = (req, res) => {
 
     res.json({ allFixtures: { fixtures, nextMatch } });
   };
-  getFixtures();
+  if (!id) {
+    res.status(400).json({ error: "Required Team ID" });
+  } else {
+    getFixtures();
+  }
 };
