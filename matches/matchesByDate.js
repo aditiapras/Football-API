@@ -1,11 +1,11 @@
 module.exports = (req, res) => {
-  const matchId = req.query.matchId;
+  const date = req.query.date;
   const getMatches = async () => {
     const matches = await fetch(
-      `https://www.fotmob.com/api/matchDetails?matchId=${matchId}`
+      `https://www.fotmob.com/api/matches?date=${date}`
     ).then((r) => r.json());
 
-    res.json(matches);
+    res.json({ leagues: matches.leagues });
   };
   getMatches();
 };
