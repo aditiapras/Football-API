@@ -30,5 +30,9 @@ module.exports = (req, res) => {
 
     res.json({ details, history: histories() });
   };
-  getTeams();
+  if (!id) {
+    res.json({ result: null, error: "Required Team ID!" });
+  } else {
+    getTeams();
+  }
 };
