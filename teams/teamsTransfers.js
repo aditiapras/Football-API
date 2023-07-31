@@ -7,7 +7,9 @@ module.exports = (req, res) => {
 
     res.json({ transfers: transfers.transfers });
   };
-  getTransfers();
+  if (!id) {
+    res.status(400).json({ error: "Required Team ID" });
+  } else {
+    getTransfers();
+  }
 };
-
-// https://images.fotmob.com/image_resources/playerimages/1077975.png
