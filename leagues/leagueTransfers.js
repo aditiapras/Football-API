@@ -3,14 +3,20 @@ module.exports = (req, res) => {
   const season = req.query.season;
 
   const getTransfers = async () => {
-    const transfers = await fetch(
-      `https://www.fotmob.com/api/leagues?id=${id}`
-    ).then((r) => r.json());
-    res.json({ transfers: transfers.transfers });
+    if (!id) {
+      res.status(400).json({ result: null, error: "Required League ID" });
+    } else {
+      try {
+        const transfers = await fetch(
+          `https://www.fotmob.com/api/leagues?id=${id}`
+        ).then((r) => r.json());
+        res.json({ transfers: transfers.transfers });
+      } catch {
+        return res
+          .status(400)
+          .json({ result: null, error: "League ID is invalid" });
+      }
+    }
   };
-  if (!id) {
-    res.status(400).json({ result: null, error: "Required League ID" });
-  } else {
-    getTransfers();
-  }
+  getTransfers();
 };
