@@ -36,5 +36,9 @@ module.exports = (req, res) => {
 
     res.json({ matches: { allMatches: allMatches } });
   };
-  getMatches();
+  if (!id) {
+    res.status(400).json({ result: null, error: "Required League ID" });
+  } else {
+    getMatches();
+  }
 };
