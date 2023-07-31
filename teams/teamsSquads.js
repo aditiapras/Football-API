@@ -46,5 +46,9 @@ module.exports = (req, res) => {
       squads: returned(),
     });
   };
-  getSquads();
+  if (!id) {
+    res.json({ result: null, error: "Required Team ID!" });
+  } else {
+    getSquads();
+  }
 };
