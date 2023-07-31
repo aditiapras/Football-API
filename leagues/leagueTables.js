@@ -174,6 +174,9 @@ module.exports = (req, res) => {
 
     res.json({ table });
   };
-
-  getTables();
+  if (!id) {
+    res.status(400).json({ result: null, error: "Required League ID" });
+  } else {
+    getTables();
+  }
 };
