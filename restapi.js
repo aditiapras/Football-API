@@ -20,6 +20,7 @@ const matchDetails = require("./matches/matchDetail.js");
 const matchEvents = require("./matches/events.js");
 const matchLineups = require("./matches/lineups.js");
 const matchStats = require("./matches/stats.js");
+const matchH2H = require("./matches/h2h.js");
 const location = require("./mylocation/location.js");
 
 require("dotenv").config();
@@ -73,7 +74,11 @@ app.get("/matches/details", matchDetails);
 app.get("/matches/events", matchEvents);
 app.get("/matches/stats", matchStats);
 app.get("/matches/lineups", matchLineups);
+app.get("/matches/h2h", matchH2H);
 
 app.get("/mylocation", isAuth, location);
+
+// https://www.fotmob.com/api/teamseasonstats?teamId=9825
+// https://www.fotmob.com/api/teamseasonstats?teamId=9825&tournamentId=20720
 
 app.listen(port, () => console.log(`Express app running on port ${port}!`));
