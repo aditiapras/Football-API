@@ -30,6 +30,7 @@ const clientLocation = require("./mylocation/clientLocation.js");
 require("dotenv").config();
 
 app.use(cors());
+app.set("trust proxy", true);
 
 let publicPath = path.join(__dirname, "public");
 let docPath = path.join(__dirname, "public");
