@@ -49,42 +49,56 @@ const isAuth = (req, res, next) => {
 };
 
 // API HOMEPAGE
+// app.get("/", (req, res) => {
+//   res.sendFile(`${publicPath}/index.html`);
+// });
+
+// app.get("/documentation-v1", (req, res) => {
+//   res.sendFile(`${docPath}/documentation.html`);
+// });
+
 app.get("/", (req, res) => {
-  res.sendFile(`${publicPath}/index.html`);
+  res.json({
+    message:
+      "Checkout https://rapidapi.com/insidefoot-insidefoot-default/api/football-api68 for information and subscription.",
+  });
 });
 
 app.get("/documentation-v1", (req, res) => {
-  res.sendFile(`${docPath}/documentation.html`);
+  res.json({
+    message:
+      "Checkout https://rapidapi.com/insidefoot-insidefoot-default/api/football-api68 for information and subscription.",
+  });
 });
 
 // ** TEAMS Endpoint **
-app.get("/teams", teamById);
-app.get("/teams/squads", teamSquad);
-app.get("/teams/fixtures", teamFixtures);
-app.get("/teams/transfers", teamTransfers);
-app.get("/teams/forms", teamForms);
+app.get("/teams", isAuth, teamById);
+app.get("/teams/squads", isAuth, teamSquad);
+app.get("/teams/fixtures", isAuth, teamFixtures);
+app.get("/teams/transfers", isAuth, teamTransfers);
+app.get("/teams/forms", isAuth, teamForms);
 
 // ** LEAGUE ENDPOINT **
-app.get("/allLeagues", allLeagues);
-app.get("/leagues", leagueDetails);
-app.get("/leagues/tables", leagueTables);
-app.get("/leagues/transfers", leagueTransfers);
-app.get("/leagues/fixtures", leagueFixtures);
-app.get("/leagues/stats", leagueStats);
+app.get("/allLeagues", isAuth, allLeagues);
+app.get("/leagues", isAuth, leagueDetails);
+app.get("/leagues/tables", isAuth, leagueTables);
+app.get("/leagues/transfers", isAuth, leagueTransfers);
+app.get("/leagues/fixtures", isAuth, leagueFixtures);
+app.get("/leagues/stats", isAuth, leagueStats);
 
 // ** MATCHES ENDPOINT **
-app.get("/matches/playoff", matchPlayoff);
-app.get("/matches", matchByDate);
-app.get("/matches/live", liveMatches);
-app.get("/matches/details", matchDetails);
-app.get("/matches/events", matchEvents);
-app.get("/matches/stats", matchStats);
-app.get("/matches/lineups", matchLineups);
-app.get("/matches/h2h", matchH2H);
+app.get("/matches/playoff", isAuth, matchPlayoff);
+app.get("/matches", isAuth, matchByDate);
+app.get("/matches/live", isAuth, liveMatches);
+app.get("/matches/details", isAuth, matchDetails);
+app.get("/matches/events", isAuth, matchEvents);
+app.get("/matches/stats", isAuth, matchStats);
+app.get("/matches/lineups", isAuth, matchLineups);
+app.get("/matches/h2h", isAuth, matchH2H);
 
 // ** PLAYERS ENDPOINT **
-app.get("/players/details", playerDetails);
-app.get("/players/stats", playerStats);
+app.get("/players/details", isAuth, playerDetails);
+app.get("/players/stats", isAuth, playerStats);
 
 app.get("/mylocation", isAuth, location);
 app.get("/mylocation/client", isAuth, clientLocation);
