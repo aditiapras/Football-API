@@ -6,7 +6,7 @@ module.exports = (req, res) => {
   let ipv = req.ip;
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const getIp = async () => {
-    const geo = await fetch(`http://www.geoplugin.net/json.gp?ip=${ip}`).then(
+    const geo = await fetch(`http://www.geoplugin.net/json.gp?ip=${ipv}`).then(
       (r) => r.json()
     );
 
