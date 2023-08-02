@@ -1,7 +1,7 @@
 const moment = require("moment-timezone");
 
 module.exports = (req, res) => {
-  const ip = req.ip;
+  let ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const getIp = async () => {
     const timezone = moment.tz.guess();
@@ -13,6 +13,7 @@ module.exports = (req, res) => {
       IP: geo.query,
       timezone,
       tz,
+      ip: ip,
       clientTimezone: geo.timezone,
       status: geo.status,
       country: geo.country,
