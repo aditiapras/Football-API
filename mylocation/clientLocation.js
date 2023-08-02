@@ -1,5 +1,4 @@
 module.exports = (req, res) => {
-  // let ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
   let ipv = req.ip;
   const getIp = async () => {
     const geo = await fetch(`http://www.geoplugin.net/json.gp?ip=${ipv}`).then(
@@ -20,5 +19,4 @@ module.exports = (req, res) => {
     });
   };
   getIp();
-  s;
 };
