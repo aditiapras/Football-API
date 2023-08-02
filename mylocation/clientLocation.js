@@ -1,7 +1,8 @@
 const moment = require("moment-timezone");
+const requestIp = require("request-ip");
 
 module.exports = (req, res) => {
-  var ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
+  let ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const getIp = async () => {
     const geo = await fetch(`http://www.geoplugin.net/json.gp?ip=${ip}`).then(
@@ -10,7 +11,6 @@ module.exports = (req, res) => {
 
     res.json({
       ip: ip,
-      cip: ip.ip,
       tz,
       clientIp: geo.geoplugin_request,
       geoplugin_city: geo.geoplugin_city,
