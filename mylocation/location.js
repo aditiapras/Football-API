@@ -1,32 +1,8 @@
-const moment = require("moment-timezone");
+const satelize = require("satelize-lts");
 
 module.exports = (req, res) => {
-  let ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
-  let ipv = req.ip;
-  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const getIp = async () => {
-    const timezone = moment.tz.guess();
-    const geo = await fetch(`http://ip-api.com/json/${ipv}`).then((r) =>
-      r.json()
-    );
-
-    res.json({
-      IP: geo.query,
-      ipv: ipv,
-      timezone,
-      tz,
-      ip: ip,
-      clientTimezone: geo.timezone,
-      status: geo.status,
-      country: geo.country,
-      countryCode: geo.countryCode,
-      region: geo.region,
-      regionName: geo.regionName,
-      city: geo.city,
-      lat: geo.lat,
-      lon: geo.lon,
-      isp: geo.isp,
-    });
-  };
-  getIp();
+  let ip = req.ip;
+  satelize.satelize({ ip: `${ip}` }, function (err, payload) {
+    res.json(payload);
+  });
 };
