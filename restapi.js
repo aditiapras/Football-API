@@ -14,6 +14,7 @@ const leagueTables = require("./leagues/leagueTables.js");
 const leagueTransfers = require("./leagues/leagueTransfers.js");
 const leagueFixtures = require("./leagues/leagueFixtures.js");
 const matchPlayoff = require("./leagues/leaguePlayoff.js");
+const leagueStats = require("./leagues/leagueStats.js");
 const matchByDate = require("./matches/matchesByDate.js");
 const liveMatches = require("./matches/liveMatches.js");
 const matchDetails = require("./matches/matchDetail.js");
@@ -21,7 +22,10 @@ const matchEvents = require("./matches/events.js");
 const matchLineups = require("./matches/lineups.js");
 const matchStats = require("./matches/stats.js");
 const matchH2H = require("./matches/h2h.js");
+const playerDetails = require("./players/playersDetails.js");
+const playerStats = require("./players/playersStats.js");
 const location = require("./mylocation/location.js");
+const clientLocation = require("./mylocation/clientLocation.js");
 
 require("dotenv").config();
 
@@ -65,6 +69,7 @@ app.get("/leagues", leagueDetails);
 app.get("/leagues/tables", leagueTables);
 app.get("/leagues/transfers", leagueTransfers);
 app.get("/leagues/fixtures", leagueFixtures);
+app.get("/leagues/stats", leagueStats);
 
 // ** MATCHES ENDPOINT **
 app.get("/matches/playoff", matchPlayoff);
@@ -76,9 +81,11 @@ app.get("/matches/stats", matchStats);
 app.get("/matches/lineups", matchLineups);
 app.get("/matches/h2h", matchH2H);
 
-app.get("/mylocation", isAuth, location);
+// ** PLAYERS ENDPOINT **
+app.get("/players/details", playerDetails);
+app.get("/players/stats", playerStats);
 
-// https://www.fotmob.com/api/teamseasonstats?teamId=9825
-// https://www.fotmob.com/api/teamseasonstats?teamId=9825&tournamentId=20720
+app.get("/mylocation", isAuth, location);
+app.get("/mylocation/client", isAuth, clientLocation);
 
 app.listen(port, () => console.log(`Express app running on port ${port}!`));
