@@ -6,7 +6,7 @@ module.exports = (req, res) => {
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const getIp = async () => {
     const timezone = moment.tz.guess();
-    const geo = await fetch(`http://ip-api.com/json/${ip}`).then((r) =>
+    const geo = await fetch(`http://ip-api.com/json/${ipv}`).then((r) =>
       r.json()
     );
 
