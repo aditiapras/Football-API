@@ -4,20 +4,23 @@ module.exports = (req, res) => {
   var ip = req.header("x-forwarded-for") || req.connection.remoteAddress;
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
   const getIp = async () => {
-    const timezone = moment.tz.guess();
-    const geo = await fetch(
-      `http://www.geoplugin.net/json.gp?ip=${ip.ip}`
-    ).then((r) => r.json());
+    const geo = await fetch(`http://www.geoplugin.net/json.gp?ip=${ip}`).then(
+      (r) => r.json()
+    );
 
     res.json({
-      IP: ip,
-      timezone,
+      ip: ip,
+      cip: ip.ip,
       tz,
-      clientTimezone: geo.geoplugin_timezone,
-      city: geo.geoplugin_city,
-      region: geo.geoplugin_region,
-      ccode: geo.geoplugin_countryCode,
-      clientIp: ip,
+      clientIp: geo.geoplugin_request,
+      geoplugin_city: geo.geoplugin_city,
+      geoplugin_region: geo.geoplugin_region,
+      geoplugin_regionCode: geo.geoplugin_regionCode,
+      geoplugin_regionName: geo.geoplugin_regionName,
+      geoplugin_countryCode: geo.geoplugin_countryCode,
+      geoplugin_countryName: geo.geoplugin_countryName,
+      geoplugin_continentCode: geo.geoplugin_continentCode,
+      geoplugin_timezone: geo.geoplugin_timezone,
     });
   };
   getIp();
