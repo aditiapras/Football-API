@@ -4,10 +4,23 @@ module.exports = (req, res) => {
   const date = moment().format("YYYYMMDD");
   const currentDate = moment().format("LLLL");
   const utcTime = moment.utc();
-  const timezone = moment.tz.guess();
+
   const getLive = async () => {
+    const locations = await fetch(
+      `https://football-api68.p.rapidapi.com/mylocation`,
+      {
+        headers: {
+          "X-RapidAPI-Key": process.env.RAPID_KEY,
+          "X-RapidAPI-Host": process.env.RAPID_BASE,
+        },
+      }
+    ).then((r) => r.json());
+
+    const tz = locations.timezone;
+    const ccode = locations.country_code;
+
     const live = await fetch(
-      `https://www.fotmob.com/api/matches?date=${date}&timezone=${timezone}`
+      `https://www.fotmob.com/api/matches?date=${date}&timezone=${tz}&ccode3=${ccode}`
     ).then((r) => r.json());
 
     const liveMatches = live.leagues.map((league) => {
@@ -35,7 +48,8 @@ module.exports = (req, res) => {
     res.json({
       datetime: currentDate,
       utcTime: utcTime,
-      timezone: timezone,
+      countryCode: ccode,
+      timezone: tz,
       liveMatches: liveMatch,
     });
   };
