@@ -182,7 +182,7 @@ module.exports = (req, res) => {
       } catch {
         return res
           .status(400)
-          .json({ result: null, error: "League ID is invalid." });
+          .json({ result: null, error: "League ID or Season is invalid." });
       }
     }
   };
