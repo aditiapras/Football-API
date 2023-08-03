@@ -1,5 +1,6 @@
 module.exports = (req, res) => {
   const id = req.query.id;
+  const season = req.query.season;
 
   const getPlayoff = async () => {
     if (!id) {
@@ -7,7 +8,7 @@ module.exports = (req, res) => {
     } else {
       try {
         const playoff = await fetch(
-          `https://www.fotmob.com/api/leagues?id=${id}&season=`
+          `https://www.fotmob.com/api/leagues?id=${id}&season=${season}`
         ).then((r) => r.json());
 
         const returned = () => {
