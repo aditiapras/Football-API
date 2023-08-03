@@ -29,9 +29,6 @@ dependencies:
   request-ip:
     specifier: ^3.3.0
     version: 3.3.0
-  satelize:
-    specifier: ^0.1.2
-    version: 0.1.2
   satelize-lts:
     specifier: ^1.0.1
     version: 1.0.1
@@ -1352,11 +1349,6 @@ packages:
     resolution: {integrity: sha512-kakam6Ldw4V9/9YMao87THNhI6LCBwQGfPr674Rhf6MYWz3SQ2XhuJNIPWNoytu07WVbbTes247GSuPSj0s0Zg==}
     dependencies:
       maxmind-db-reader: 0.2.1
-    dev: false
-
-  /satelize@0.1.2:
-    resolution: {integrity: sha512-4ag9yEKvaGO1c6fwd5rnpcHpPt+afMB3EscghulSNyaU/MJWNgGRTUOSzQ0Ioi3I8kJWY6kiF5pHlgRJFJkxOQ==}
-    engines: {node: '>=0.6.x'}
     dev: false
 
   /semver@7.5.4:
