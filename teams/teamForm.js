@@ -16,13 +16,13 @@ module.exports = (req, res) => {
             home: {
               name: form.tooltipText.homeTeam,
               id: form.tooltipText.homeTeamId,
-              logo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${form.tooltipText.homeTeamId}_small.png`,
+              logo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${form.tooltipText.homeTeamId}_small.png`,
               score: form.tooltipText.homeScore,
             },
             away: {
               name: form.tooltipText.awayTeam,
               id: form.tooltipText.awayTeamId,
-              logo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${form.tooltipText.awayTeamId}_small.png`,
+              logo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${form.tooltipText.awayTeamId}_small.png`,
               score: form.tooltipText.awayScore,
             },
             score: form.score,

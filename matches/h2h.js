@@ -16,19 +16,19 @@ module.exports = (req, res) => {
                 name: match.league.name,
                 id: match.league.id,
                 logo: {
-                  light: `https://api.soccerhub.pro/image_resources/logo/leaguelogo/light/${match.league.id}.png`,
-                  dark: `https://api.soccerhub.pro/image_resources/logo/leaguelogo/dark/${match.league.id}.png`,
+                  light: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/light/${match.league.id}.png`,
+                  dark: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/dark/${match.league.id}.png`,
                 },
               },
               home: {
                 name: match.home.name,
                 id: match.home.id,
-                logo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${match.home.id}.png`,
+                logo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${match.home.id}.png`,
               },
               away: {
                 name: match.away.name,
                 id: match.away.id,
-                logo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${match.away.id}.png`,
+                logo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${match.away.id}.png`,
               },
               status: match.status,
             };

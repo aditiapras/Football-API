@@ -32,7 +32,7 @@ module.exports = (req, res) => {
                     winner: {
                       id: matchup.winner,
                       team: teamWinner,
-                      logo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${winnerLogo}.png`,
+                      logo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${winnerLogo}.png`,
                     },
                     homeTeamId: matchup.homeTeamId,
                     awayTeamId: matchup.awayTeamId,
@@ -42,17 +42,17 @@ module.exports = (req, res) => {
                     },
                     homeTeam: matchup.homeTeam,
                     homeTeamShortName: matchup.homeTeamShortName,
-                    homeTeamLogo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${matchup.homeTeamId}.png`,
+                    homeTeamLogo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${matchup.homeTeamId}.png`,
                     awayTeam: matchup.awayTeam,
                     awayTeamShortName: matchup.awayTeamShortName,
-                    awayTeamLogo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${matchup.awayTeamId}.png`,
+                    awayTeamLogo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${matchup.awayTeamId}.png`,
                     matches: matchup.matches.map((match) => {
                       return {
                         matchId: match.matchId,
                         home: {
                           id: match.home.id,
                           name: match.home.name,
-                          logo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${match.home.id}.png`,
+                          logo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${match.home.id}.png`,
                           shortName: match.home.shortName,
                           score: match.home.score,
                           winner: match.home.winner,
@@ -60,7 +60,7 @@ module.exports = (req, res) => {
                         away: {
                           id: match.away.id,
                           name: match.away.name,
-                          logo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${match.away.id}.png`,
+                          logo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${match.away.id}.png`,
                           shortName: match.away.shortName,
                           score: match.away.score,
                           winner: match.away.winner,

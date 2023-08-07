@@ -19,14 +19,14 @@ module.exports = (req, res) => {
         homeTeam: {
           name: matches.general.homeTeam.name,
           id: matches.general.homeTeam.id,
-          logo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${matches.general.homeTeam.id}_small.png`,
+          logo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${matches.general.homeTeam.id}_small.png`,
           score: matches.header.teams[0].score,
           fifaRank: matches.header.teams[0].fifaRank,
         },
         awayTeam: {
           name: matches.general.awayTeam.name,
           id: matches.general.awayTeam.id,
-          logo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${matches.general.awayTeam.id}_small.png`,
+          logo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${matches.general.awayTeam.id}_small.png`,
           score: matches.header.teams[1].score,
           fifaRank: matches.header.teams[1].fifaRank,
         },

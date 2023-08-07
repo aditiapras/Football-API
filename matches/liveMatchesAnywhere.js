@@ -17,11 +17,11 @@ module.exports = (req, res) => {
         id: league.primaryId,
         name: league.name,
         logo: {
-          light: `https://api.soccerhub.pro/image_resources/logo/leaguelogo/light/${league.primaryId}.png`,
-          dark: `https://api.soccerhub.pro/image_resources/logo/leaguelogo/dark/${league.primaryId}.png`,
+          light: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/light/${league.primaryId}.png`,
+          dark: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/dark/${league.primaryId}.png`,
         },
         ccode: league.ccode,
-        countryLogo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${league.ccode.toLowerCase()}.png`,
+        countryLogo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${league.ccode.toLowerCase()}.png`,
 
         matches: league.matches.filter(
           (match) =>
