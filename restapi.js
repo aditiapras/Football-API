@@ -50,14 +50,6 @@ const isAuth = (req, res, next) => {
   }
 };
 
-// API HOMEPAGE
-// app.get("/", (req, res) => {
-//   res.sendFile(`${publicPath}/index.html`);
-// });
-
-// app.get("/documentation-v1", (req, res) => {
-//   res.sendFile(`${docPath}/documentation.html`);
-// });
 
 app.get("/", (req, res) => {
   res.json({
