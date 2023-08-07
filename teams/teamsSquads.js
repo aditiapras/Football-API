@@ -39,8 +39,8 @@ module.exports = (req, res) => {
         id: squads.details.id,
         name: squads.details.name,
         logo: {
-          normal: `https://images.fotmob.com/image_resources/logo/teamlogo/${squads.details.id}.png`,
-          small: `https://images.fotmob.com/image_resources/logo/teamlogo/${squads.details.id}_xsmall.png`,
+          normal: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${squads.details.id}.png`,
+          small: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${squads.details.id}_small.png`,
         },
       },
       squads: returned(),
