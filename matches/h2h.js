@@ -16,19 +16,19 @@ module.exports = (req, res) => {
                 name: match.league.name,
                 id: match.league.id,
                 logo: {
-                  light: `https://images.fotmob.com/image_resources/logo/leaguelogo/${match.league.id}.png`,
-                  dark: `https://images.fotmob.com/image_resources/logo/leaguelogo/dark/${match.league.id}.png`,
+                  light: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/light/${match.league.id}.png`,
+                  dark: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/dark/${match.league.id}.png`,
                 },
               },
               home: {
                 name: match.home.name,
                 id: match.home.id,
-                logo: `https://images.fotmob.com/image_resources/logo/teamlogo/${match.home.id}.png`,
+                logo: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${match.home.id}.png`,
               },
               away: {
                 name: match.away.name,
                 id: match.away.id,
-                logo: `https://images.fotmob.com/image_resources/logo/teamlogo/${match.away.id}.png`,
+                logo: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${match.away.id}.png`,
               },
               status: match.status,
             };
