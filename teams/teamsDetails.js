@@ -16,8 +16,8 @@ module.exports = (req, res) => {
       shortName: team.details.shortName,
       country: team.details.country,
       logo: {
-        normal: team.details.sportsTeamJSONLD.logo,
-        small: `https://images.fotmob.com/image_resources/logo/teamlogo/${team.details.id}_xsmall.png`,
+        normal: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${team.details.id}.png`,
+        small: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${team.details.id}_small.png`,
       },
       league: team.details.sportsTeamJSONLD.memberOf.name,
       venue: team.overview.venue,
