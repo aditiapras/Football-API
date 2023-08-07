@@ -16,13 +16,13 @@ module.exports = (req, res) => {
             home: {
               name: form.tooltipText.homeTeam,
               id: form.tooltipText.homeTeamId,
-              logo: `https://images.fotmob.com/image_resources/logo/teamlogo/${form.tooltipText.homeTeamId}_xsmall.png`,
+              logo: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${form.tooltipText.homeTeamId}_small.png`,
               score: form.tooltipText.homeScore,
             },
             away: {
               name: form.tooltipText.awayTeam,
               id: form.tooltipText.awayTeamId,
-              logo: `https://images.fotmob.com/image_resources/logo/teamlogo/${form.tooltipText.awayTeamId}_xsmall.png`,
+              logo: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${form.tooltipText.awayTeamId}_small.png`,
               score: form.tooltipText.awayScore,
             },
             score: form.score,
