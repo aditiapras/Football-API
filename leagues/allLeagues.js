@@ -24,8 +24,8 @@ module.exports = (req, res) => {
           name: league.name,
           localizedName: league.localizedName,
           logo: {
-            light: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/light/${pop.id}.png`,
-            dark: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/dark/${pop.id}.png`,
+            light: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/light/${league.id}.png`,
+            dark: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/dark/${league.id}.png`,
           },
         };
       });
@@ -39,8 +39,8 @@ module.exports = (req, res) => {
           name: league.name,
           localizedName: cou.localizedName,
           logo: {
-            light: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/light/${pop.id}.png`,
-            dark: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/dark/${pop.id}.png`,
+            light: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/light/${league.id}.png`,
+            dark: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/dark/${league.id}.png`,
           },
         };
       });
