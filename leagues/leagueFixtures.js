@@ -23,8 +23,8 @@ module.exports = (req, res) => {
               shortName: match.home.shortName,
               id: match.home.id,
               logo: {
-                normal: `https://images.fotmob.com/image_resources/logo/teamlogo/${match.home.id}.png`,
-                small: `https://images.fotmob.com/image_resources/logo/teamlogo/${match.home.id}_xsmall.png`,
+                normal: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${match.home.id}.png`,
+                small: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${match.home.id}_small.png`,
               },
             },
             away: {
@@ -32,8 +32,8 @@ module.exports = (req, res) => {
               shortName: match.away.shortName,
               id: match.away.id,
               logo: {
-                normal: `https://images.fotmob.com/image_resources/logo/teamlogo/${match.away.id}.png`,
-                small: `https://images.fotmob.com/image_resources/logo/teamlogo/${match.away.id}_xsmall.png`,
+                normal: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${match.away.id}.png`,
+                small: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${match.away.id}_small.png`,
               },
             },
             status: match.status,
