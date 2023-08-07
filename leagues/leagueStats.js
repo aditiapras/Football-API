@@ -42,7 +42,7 @@ module.exports = (req, res) => {
                 id: trophy.winner.id,
                 seasonName: trophy.winner.seasonName,
                 name: trophy.winner.name,
-                logo: `https://media-1.api.aditiapras.dev/image_resources/logo/teamlogo/${trophy.winner.id}.png`,
+                logo: `https://api.soccerhub.pro/image_resources/logo/teamlogo/${trophy.winner.id}.png`,
                 winner: trophy.winner.winner,
               },
             };

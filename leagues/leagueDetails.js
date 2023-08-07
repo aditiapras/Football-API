@@ -26,8 +26,8 @@ module.exports = (req, res) => {
           shortName: leagues.details.shortName,
           country: leagues.details.country,
           logo: {
-            light: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/light/${leagues.details.id}.png`,
-            dark: `https://media-1.api.aditiapras.dev/image_resources/logo/leaguelogo/dark/${leagues.details.id}.png`,
+            light: `https://api.soccerhub.pro/image_resources/logo/leaguelogo/light/${leagues.details.id}.png`,
+            dark: `https://api.soccerhub.pro/image_resources/logo/leaguelogo/dark/${leagues.details.id}.png`,
           },
         };
 
