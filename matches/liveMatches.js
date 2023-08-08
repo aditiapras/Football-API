@@ -21,7 +21,7 @@ module.exports = (req, res) => {
           dark: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/dark/${league.primaryId}.png`,
         },
         ccode: league.ccode,
-        countryLogo: `https://media.soccerhub.pro/image_resources/logo/teamlogo/${league.ccode.toLowerCase()}.png`,
+        countryLogo: `https://media.soccerhub.pro/image_resources/logo/countrylogo/${league.ccode.toLowerCase()}.png`,
 
         matches: league.matches.filter(
           (match) =>

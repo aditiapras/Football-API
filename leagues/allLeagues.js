@@ -44,7 +44,12 @@ module.exports = (req, res) => {
           },
         };
       });
-      return { ccode: cou.ccode, name: cou.name, leagues };
+      return {
+        ccode: cou.ccode,
+        name: cou.name,
+        countryLogo: `https://media.soccerhub.pro/image_resources/logo/countrylogo/${cou.ccode.toLowerCase()}.png`,
+        leagues,
+      };
     });
 
     res.json({ popular, international, countries });

@@ -25,6 +25,7 @@ module.exports = (req, res) => {
           latestSeason: leagues.details.latestSeason,
           shortName: leagues.details.shortName,
           country: leagues.details.country,
+          countryLogo: `https://media.soccerhub.pro/image_resources/logo/countrylogo/${league.details.country.toLowerCase()}.png`,
           logo: {
             light: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/light/${leagues.details.id}.png`,
             dark: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/dark/${leagues.details.id}.png`,
