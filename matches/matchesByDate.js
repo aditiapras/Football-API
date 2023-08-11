@@ -13,7 +13,19 @@ module.exports = (req, res) => {
 
       res.json({
         query: { date: date, ccode: ccode, timezone: timezone },
-        leagues: matches.leagues,
+        leagues: matches.leagues.map((league) => {
+          return {
+            ccode: league.ccode,
+            id: league.id,
+            name: league.name,
+            logo: {
+              light: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/light/${league.id}.png`,
+              dark: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/dark/${league.id}.png`,
+            },
+            countryLogo: `https://media.soccerhub.pro/image_resources/logo/countrylogo/${league.ccode.toLowerCase()}.png`,
+            matches: league.matches,
+          };
+        }),
       });
     }
   };
