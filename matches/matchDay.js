@@ -13,7 +13,6 @@ module.exports = (req, res) => {
 
       res.json({
         query: { date: date, ccode: ccode, timezone: timezone },
-        leagues: matches.leagues,
       });
     }
   };
