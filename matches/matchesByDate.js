@@ -16,11 +16,11 @@ module.exports = (req, res) => {
         leagues: matches.leagues.map((league) => {
           return {
             ccode: league.ccode,
-            id: league.id,
+            id: league.primaryId,
             name: league.name,
             logo: {
-              light: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/light/${league.id}.png`,
-              dark: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/dark/${league.id}.png`,
+              light: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/light/${league.primaryId}.png`,
+              dark: `https://media.soccerhub.pro/image_resources/logo/leaguelogo/dark/${league.primaryId}.png`,
             },
             countryLogo: `https://media.soccerhub.pro/image_resources/logo/countrylogo/${league.ccode.toLowerCase()}.png`,
             matches: league.matches,
