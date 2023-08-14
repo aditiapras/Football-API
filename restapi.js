@@ -28,6 +28,9 @@ const playerDetails = require("./players/playersDetails.js");
 const playerStats = require("./players/playersStats.js");
 const location = require("./mylocation/location.js");
 const clientLocation = require("./mylocation/clientLocation.js");
+const satelize = require("satelize");
+const lookup = require("country-code-lookup");
+const tzlookup = require("tz-lookup");
 
 require("dotenv").config();
 
@@ -97,5 +100,19 @@ app.get("/players/stats", isAuth, playerStats);
 
 app.get("/mylocation", isAuth, location);
 app.get("/mylocation/client", isAuth, clientLocation);
+
+app.get("/api/location", (req, res) => {
+  const ip = req.query.ip;
+  satelize.satelize({ ip: ip }, function (err, payload) {
+    const iso3 = lookup.byIso(payload.country_code);
+    const tz = tzlookup(payload.latitude, payload.longitude);
+    res.json({
+      ip: payload.ip,
+      iso2: payload.country_code,
+      iso3: iso3.iso3,
+      timezone: tz,
+    });
+  });
+});
 
 app.listen(port, () => console.log(`Express app running on port ${port}!`));
