@@ -8,6 +8,9 @@ dependencies:
   cors:
     specifier: ^2.8.5
     version: 2.8.5
+  country-code-lookup:
+    specifier: ^0.1.0
+    version: 0.1.0
   dotenv:
     specifier: ^16.3.1
     version: 16.3.1
@@ -29,12 +32,18 @@ dependencies:
   request-ip:
     specifier: ^3.3.0
     version: 3.3.0
+  satelize:
+    specifier: ^0.2.0
+    version: 0.2.0
   satelize-lts:
     specifier: ^1.0.1
     version: 1.0.1
   sprintf-js:
     specifier: ^1.1.2
     version: 1.1.2
+  tz-lookup:
+    specifier: ^6.1.25
+    version: 6.1.25
 
 devDependencies:
   autoprefixer:
@@ -355,6 +364,10 @@ packages:
     dependencies:
       object-assign: 4.1.1
       vary: 1.1.2
+    dev: false
+
+  /country-code-lookup@0.1.0:
+    resolution: {integrity: sha512-IOI66HEG+8bXfWPy+sTzuN7161vmDZOHg1wgIPFf3WfD73FeLajnn6C+fnxOIa9RL1WRBDMXQQWW/FOaOYaQ3w==}
     dev: false
 
   /cssesc@3.0.0:
@@ -1351,6 +1364,13 @@ packages:
       maxmind-db-reader: 0.2.1
     dev: false
 
+  /satelize@0.2.0:
+    resolution: {integrity: sha512-q9C6yN56scPM/G51V2FKfgnPCsAclbyYTaP7e4RLLx7jIyDkS1+9uob0tt2SpyHkOGAPHVNFnh8vRnuI7Hl1yQ==}
+    engines: {node: '>=0.8.x'}
+    dependencies:
+      maxmind-db-reader: 0.2.1
+    dev: false
+
   /semver@7.5.4:
     resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
     engines: {node: '>=10'}
@@ -1575,6 +1595,10 @@ packages:
     dependencies:
       media-typer: 0.3.0
       mime-types: 2.1.35
+    dev: false
+
+  /tz-lookup@6.1.25:
+    resolution: {integrity: sha512-fFewT9o1uDzsW1QnUU1ValqaihFnwiUiiHr1S79/fxOzKXYYvX+EHeRnpvQJ9B3Qg67wPXT6QF2Esc4pFOrvLg==}
     dev: false
 
   /undefsafe@2.0.5:
